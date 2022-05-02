@@ -1,4 +1,4 @@
-package pe.edu.ulima.pm.practica1.activitys
+package pe.edu.ulima.pm.practica1
 
 import android.os.Bundle
 import android.view.View
@@ -7,7 +7,6 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import pe.edu.ulima.pm.practica1.R
 import pe.edu.ulima.pm.practica1.clases8locos.Barajacartas
 import pe.edu.ulima.pm.practica1.clases8locos.Cartajuego
 import pe.edu.ulima.pm.practica1.clases8locos.Efectocarta
@@ -15,18 +14,20 @@ import pe.edu.ulima.pm.practica1.clases8locos.Jugadorpartida
 
 class GameActivity : AppCompatActivity()
 {
-    var rondajuego: Int = 1;
+    var rondaJuego: Int = 1;
     var turnojugador: Int = 0;
     lateinit var barajacartas: Barajacartas;
     var jugadores: MutableList<Jugadorpartida> = mutableListOf();
+
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game)
+
         inicioJuego();
 
-        findViewById<Barajacartas>(R.id.idBaraja).setOnClickListener { v: View ->
+        findViewById<Barajacartas>(R.id.idBarajaCartas).setOnClickListener { v: View ->
             robarCarta();
             setManoJugadores();
             setManoOnClick();
@@ -47,14 +48,14 @@ class GameActivity : AppCompatActivity()
     }
 
     fun inicioJuego() {
-        barajacartas = findViewById(R.id.idBaraja);
+        barajacartas = findViewById(R.id.idBarajaCartas);
 
         var jugador1 = findViewById<Jugadorpartida>(R.id.Jugador1);
-        jugador1.nombre = "JUGADOR 1";
+        jugador1.nombre = "Jhan";
         var jugador2 = findViewById<Jugadorpartida>(R.id.Jugador2);
-        jugador2.nombre = "JUGADOR 2";
+        jugador2.nombre = "Boot 1";
         var jugador3 = findViewById<Jugadorpartida>(R.id.Jugador3);
-        jugador3.nombre = "JUGADOR 3";
+        jugador3.nombre = "Boot 2";
         jugadores.add(jugador1);
         jugadores.add(jugador2);
         jugadores.add(jugador3);
@@ -70,10 +71,10 @@ class GameActivity : AppCompatActivity()
     }
 
     fun SetCartaCentral() {
-        var linearC = findViewById<LinearLayout>(R.id.linearCartaCentro);
+        var lineaC = findViewById<LinearLayout>(R.id.linearCartaCentro);
         barajacartas.cartajuegoCentral.setSize(500, 500)
-        linearC.removeAllViews();
-        linearC.addView(barajacartas.cartajuegoCentral);
+        lineaC.removeAllViews();
+        lineaC.addView(barajacartas.cartajuegoCentral);
     }
 
     fun setManoOnClick() {
@@ -86,10 +87,10 @@ class GameActivity : AppCompatActivity()
         }
     }
 
-    fun setOnclickCarta(cartajuego: Cartajuego)
+    fun setOnclickCarta(Cartajuego: Cartajuego)
     {
-        cartajuego.setOnClickListener { v: View ->
-            cartajuego.isSelect = true;
+        Cartajuego.setOnClickListener { v: View ->
+            Cartajuego.isSelect = true;
             cartasCompatibles();
         }
     }
